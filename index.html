@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Guidelines - Nova ✨</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Global Font */
+        * {
+            font-family: 'Figtree', sans-serif;
+        }
+        
+        /* New Color Variables reflecting Paynes Grey and Pearl */
+        :root {
+            /* Core Palette */
+            --nova-paynes-grey: #536878; /* Main Brand Color (Dark) */
+            --nova-pearl: #EAE0C8; /* Secondary Brand Color (Light/Accent) */
+            --nova-white: #FFFFFF; /* Base Background */
+            --nova-dark: #1A1A1A; /* Primary Text/Dark BG fallback */
+
+            /* Semantic Colors - Crucial for UX */
+            --nova-success: #38A169; /* Green for success/positive actions */
+            --nova-warning: #ECC94B; /* Yellow for warnings/cautions */
+            --nova-error: #E53E3E; /* Red for errors/destructive actions */
+
+            /* Dynamic Theme Variables (Light Mode Default) */
+            --bg-primary: var(--nova-white); 
+            --bg-secondary: #F8F9FB; /* Light background for cards/sections */
+            --text-primary: var(--nova-paynes-grey); /* Primary text color */
+            --text-secondary: #718096; /* Secondary text/subtitles */
+            --accent: var(--nova-paynes-grey); /* Main interactive color */
+            --card-bg: var(--nova-white);
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: #0E0E10; /* Darker background */
+                --bg-secondary: #1C1C1E; /* Card/section background */
+                --text-primary: var(--nova-pearl);
+                --text-secondary: #A1A1AA;
+                --accent: var(--nova-pearl); /* Use Pearl as accent in dark mode for contrast */
+                --card-bg: var(--bg-secondary);
+            }
+        }
+        
+        /* Base Styles */
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Soft, subtle shadow */
+        }
+        
+        .accent-text {
+            color: var(--accent);
+        }
+        
+        .secondary-text {
+            color: var(--text-secondary);
+        }
+        
+        /* Component Specific Styles */
+        .color-swatch {
+            width: 100%;
+            height: 120px;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .color-swatch:hover {
+            transform: scale(1.03); /* Subtle hover for swatches */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button {
+            background-color: var(--accent);
+            color: var(--nova-white);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .cta-button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+        
+        /* Layout & Animation (Kept for visual appeal in the guideline) */
+        .section-spacing {
+            padding: 80px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .section-spacing {
+                padding: 48px 0;
+            }
+        }
+
+        /* Fade-in animations remain for document presentation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <section class="section-spacing">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center fade-in">
+                <div class="mx-auto mb-8" style="width: 120px; height: 120px; background-color: var(--nova-paynes-grey); border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 48px; font-weight: 800; color: var(--nova-pearl);">N</div>
+                <h1 class="text-6xl md:text-7xl font-bold mb-4">Nova UI/UX Guidelines</h1>
+                <p class="text-2xl md:text-3xl font-medium mb-6" style="color: var(--nova-paynes-grey);">Clarity. Consistency. Calm. Built with Lucide React.</p>
+                <p class="text-lg secondary-text max-w-3xl mx-auto leading-relaxed">
+                    This document serves as the single source of truth for all design decisions, ensuring a consistent, accessible, and elegant user experience across the Nova application. Developers, please treat all values (colors, spacing, typography) as canonical variables.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-spacing pt-0">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="card rounded-3xl p-12 md:p-16 shadow-lg fade-in delay-1">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Design System Principles</h2>
+                <p class="text-lg secondary-text mb-8">We follow the **Atomic Design** methodology for building robust, scalable components.</p>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div>
+                        <div class="text-5xl mb-4">⚛️</div>
+                        <h3 class="text-2xl font-semibold mb-3 accent-text">Atoms (Inputs, Buttons)</h3>
+                        <p class="secondary-text text-sm">Smallest functional elements. Defined by their singular purpose and consistent styling.</p>
+                    </div>
+                    <div>
+                        <div class="text-5xl mb-4">🧪</div>
+                        <h3 class="text-2xl font-semibold mb-3 accent-text">Molecules (Forms, Nav Bar)</h3>
+                        <p class="secondary-text text-sm">Groups of atoms assembled to perform a simple function. Must be highly reusable.</p>
+                    </div>
+                    <div>
+                        <div class="text-5xl mb-4">🖼️</div>
+                        <h3 class="text-2xl font-semibold mb-3 accent-text">Templates (Layouts, Pages)</h3>
+                        <p class="secondary-text text-sm">A layout of molecules and organisms. Defines the structure and flow before content is added.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <section class="section-spacing pt-0">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-12 fade-in delay-1">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Color Palette & Tokens</h2>
+                <p class="text-lg secondary-text">The **Paynes Grey** and **Pearl** combination is calm, professional, and sophisticated.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="card rounded-2xl p-6 shadow-lg fade-in delay-2">
+                    <div class="color-swatch mb-4" style="background: #536878; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700;">PAYNES GREY</div>
+                    <h3 class="font-semibold text-lg mb-2">Primary / Accent</h3>
+                    <p class="text-sm secondary-text mb-2">**#536878**</p>
+                    <p class="text-sm secondary-text">Main brand color. Used for primary CTAs, active states, and dark text in light mode.</p>
+                </div>
+                
+                <div class="card rounded-2xl p-6 shadow-lg fade-in delay-3">
+                    <div class="color-swatch mb-4" style="background: #EAE0C8; color: #536878; display: flex; align-items: center; justify-content: center; font-weight: 700;">PEARL</div>
+                    <h3 class="font-semibold text-lg mb-2">Secondary / Light Accent</h3>
+                    <p class="text-sm secondary-text mb-2">**#EAE0C8**</p>
+                    <p class="text-sm secondary-text">Subtle accent color. Used for light backgrounds, borders, or text in dark mode.</p>
+                </div>
+
+                <div class="card rounded-2xl p-6 shadow-lg fade-in delay-4">
+                    <div class="color-swatch mb-4" style="background: #FFFFFF; border: 1px solid #E5E7EB;"></div>
+                    <h3 class="font-semibold text-lg mb-2">Background Base</h3>
+                    <p class="text-sm secondary-text mb-2">**#FFFFFF**</p>
+                    <p class="text-sm secondary-text">Clean base for all components in light theme. Use `var(--bg-primary)`.</p>
+                </div>
+                
+                <div class="card rounded-2xl p-6 shadow-lg fade-in delay-5">
+                    <div class="color-swatch mb-4" style="background: linear-gradient(135deg, var(--nova-success), var(--nova-error));"></div>
+                    <h3 class="font-semibold text-lg mb-2">Semantic (Status)</h3>
+                    <p class="text-sm secondary-text mb-2">Success/Error/Warning</p>
+                    <p class="text-sm secondary-text">Reserved strictly for feedback (notifications, form validation, alerts).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <section class="section-spacing pt-0">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-12 fade-in delay-1">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Typography & Hierarchy</h2>
+                <p class="text-lg secondary-text">**Figtree** for maximum legibility. Maintain a consistent, logical scale.</p>
+            </div>
+            
+            <div class="card rounded-3xl p-12 shadow-lg fade-in delay-2">
+                <div class="mb-8 border-b pb-8" style="border-color: var(--text-secondary); border-opacity: 0.1;">
+                    <h1 class="text-5xl md:text-6xl font-extrabold mb-2" style="color: var(--nova-paynes-grey);">H1 - The Core Message</h1>
+                    <p class="secondary-text">Font: Figtree Extra Bold (800), Size: 48-60px, Line Height: 1.1</p>
+                </div>
+                
+                <div class="mb-8 border-b pb-8" style="border-color: var(--text-secondary); border-opacity: 0.1;">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2">H2 - Section Title</h2>
+                    <p class="secondary-text">Font: Figtree Bold (700), Size: 32-40px, Line Height: 1.2</p>
+                </div>
+                
+                <div class="mb-8">
+                    <p class="text-lg mb-2 font-medium">Body Text (16px) - The Details</p>
+                    <p class="secondary-text leading-relaxed">Font: Figtree Regular (400), Size: 16px, Line Height: 1.6. This is the **default text size**. Ensure paragraph text is never smaller than 14px for accessibility (WCAG AA). Use Regular weight for most content.</p>
+                    <p class="text-sm mt-4 secondary-text">**Caption Text (12px):** Font: Figtree Medium (500), Size: 12px. Used for timestamps, legal notices, and minor annotations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <section class="section-spacing pt-0">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-12 fade-in delay-1">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Iconography: Lucide React ⚛️</h2>
+                <p class="text-lg secondary-text">Using **Lucide React** for a consistent, minimal, and open-source icon set. Stroke width is key.</p>
+            </div>
+            
+            <div class="card rounded-3xl p-12 shadow-lg fade-in delay-2">
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4 accent-text">Style & Implementation</h3>
+                        <ul class="space-y-3 secondary-text">
+                            <li>**Source:** Always use `lucide-react` components.</li>
+                            <li>**Stroke Weight:** Standard **2px** for all icons (can be reduced to 1.5px for 16px icons).</li>
+                            <li>**Color:** Default color is `var(--text-primary)`. Interactive icons (buttons, navigation) use `var(--accent)`.</li>
+                            <li>**Sizing:** Standard sizes are **24px** (default), **20px** (subtle), **16px** (small), and **32px** (large).</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4 accent-text">Best Practices (UX)</h3>
+                        <ul class="space-y-3 secondary-text">
+                            <li>**Clarity:** Icons must be immediately recognizable. Avoid obscure or overly complex shapes.</li>
+                            <li>**Labeling:** Always pair icons with a visible text label, especially in navigation and action buttons (unless space is a critical constraint).</li>
+                            <li>**Accessibility:** Ensure icons have an appropriate `aria-label` or are hidden from screen readers if they are purely decorative.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h4 class="text-xl font-semibold mb-4 mt-6 accent-text">Example Icons (Simulated Lucide Icons)</h4>
+                <div class="icon-grid">
+                    <div class="icon-item" style="border: 1px solid var(--text-secondary); border-opacity: 0.1;">
+                        <svg class="w-10 h-10" style="color: var(--accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l9-9 9 9M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"></path></svg>
+                    </div>
+                    <div class="icon-item" style="border: 1px solid var(--text-secondary); border-opacity: 0.1;">
+                        <svg class="w-10 h-10" style="color: var(--text-primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg>
+                    </div>
+                    <div class="icon-item" style="border: 1px solid var(--text-secondary); border-opacity: 0.1;">
+                        <svg class="w-10 h-10" style="color: var(--nova-error);" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div class="icon-item" style="border: 1px solid var(--text-secondary); border-opacity: 0.1;">
+                        <svg class="w-10 h-10" style="color: var(--nova-success);" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <section class="section-spacing pt-0">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-12 fade-in delay-1">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Senior UX & Accessibility Standards</h2>
+                <p class="text-lg secondary-text">Mandatory practices for a top-tier app experience.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="card rounded-2xl p-8 shadow-lg fade-in delay-2">
+                    <h3 class="text-2xl font-semibold mb-4 accent-text">Accessibility & Contrast (WCAG)</h3>
+                    <ul class="space-y-3 secondary-text">
+                        <li>**Contrast Ratio:** Ensure text on background meets **AA minimum (4.5:1)**. Our Primary/Accent colors on white should pass.</li>
+                        <li>**Focus States:** All interactive elements (buttons, links, inputs) **must** have a clear, distinct `:focus` ring (use a 2px solid ring in a light shade of Paynes Grey).</li>
+                        <li>**Screen Readers:** Use semantic HTML (`<button>`, `<h1>`, `<ul>`) and provide alt text for all meaningful images.</li>
+                        <li>**Target Size:** Interactive targets (buttons, links) should be a minimum of **44x44px** for touch-friendliness.</li>
+                    </ul>
+                </div>
+
+                <div class="card rounded-2xl p-8 shadow-lg fade-in delay-3">
+                    <h3 class="text-2xl font-semibold mb-4 accent-text">Microcopy & UX Writing</h3>
+                    <ul class="space-y-3 secondary-text">
+                        <li>**Tone:** Use the **Clear**, **Empowering**, and **Friendly** voice defined in the Brand Voice section.</li>
+                        <li>**Action-Oriented CTAs:** Use verbs that clearly explain the action (e.g., "Create Account," "Save Changes," not "OK," "Submit").</li>
+                        <li>**Error Messages:** Must be polite, non-blaming, and actionable. (e.g., "The email address is already in use. Try logging in or resetting your password.").</li>
+                        <li>**Zero State:** When a list or dashboard is empty, provide helpful text and a clear CTA on how to start.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <section class="section-spacing pt-0">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-12 fade-in delay-1">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Core UI Components</h2>
+                <p class="text-lg secondary-text">Standardized interaction and styling for essential elements.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="card rounded-2xl p-8 shadow-lg fade-in delay-2">
+                    <h3 class="text-xl font-semibold mb-4 accent-text">Buttons (CTA)</h3>
+                    <a href="#" class="cta-button inline-block text-center w-full mb-3">Primary Action</a>
+                    <a href="#" class="inline-block text-center w-full mb-3 font-semibold rounded-lg p-3" style="color: var(--nova-paynes-grey); border: 2px solid var(--nova-paynes-grey);">Secondary Action</a>
+                    <p class="text-sm secondary-text mt-4">**States:** Default (Solid Paynes Grey), Hover (90% opacity/slight darkening), Focus (Outline in Pearl), Disabled (50% opacity).</p>
+                </div>
+                
+                <div class="card rounded-2xl p-8 shadow-lg fade-in delay-3" style="border: 1px solid var(--nova-pearl);">
+                    <h3 class="text-xl font-semibold mb-4 accent-text">Cards & Containers</h3>
+                    <p class="font-semibold mb-2">Card Title</p>
+                    <p class="secondary-text text-sm mb-4">Use `rounded-2xl` or `rounded-3xl` for modern softness. Background is `var(--card-bg)`. Utilize a 1px border of `var(--nova-pearl)` for separation without harsh lines.</p>
+                    <div class="flex items-center space-x-2 secondary-text text-xs">
+                        <span style="color: var(--nova-success);">✓ Status: Active</span>
+                        <span style="color: var(--nova-warning);">⚠ Pending Review</span>
+                    </div>
+                </div>
+                
+                <div class="card rounded-2xl p-8 shadow-lg fade-in delay-4">
+                    <h3 class="text-xl font-semibold mb-4 accent-text">Spacing & Grid</h3>
+                    <p class="secondary-text text-sm mb-4">We use a **4px base grid** for all padding, margins, and component dimensions. This ensures vertical rhythm and predictability for developers. Use Tailwind's spacing scale (e.g., `p-4` = 16px, `m-3` = 12px).</p>
+                    <div class="bg-gray-200 h-10 w-full mb-2 flex items-center justify-center font-semibold text-gray-700">16px Padding (p-4)</div>
+                    <div class="bg-gray-300 h-10 w-full flex items-center justify-center font-semibold text-gray-800">24px Margin (m-6)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t" style="border-color: var(--text-secondary); border-opacity: 0.2;">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="text-center md:text-left">
+                    <div class="mx-auto mb-3" style="width: 48px; height: 48px; background-color: var(--nova-paynes-grey); font-size: 20px; border-radius: 12px; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: var(--nova-pearl);">N</div>
+                    <p class="secondary-text text-sm">Nova UI/UX Guidelines v1.0 | Last Updated: OCT 2025</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="mb-2">Designed for **Clarity** and **Scalability**</p>
+                    <p class="secondary-text text-sm">Contact Design System Lead for contribution access.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
