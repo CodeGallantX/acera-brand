@@ -3,372 +3,310 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brand Guidelines - Nova ✨</title>
+    <title>Brand Guidelines - Acera ✦</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <style>
         /* Global Font */
         * {
             font-family: 'Figtree', sans-serif;
+            line-height: 1.6;
+            transition: all 0.4s ease; /* Smooth transitions between slides and for base animations */
         }
         
-        /* New Color Variables reflecting Paynes Grey and Pearl */
+        /* Acera Color Variables: Paynes Grey and Pearl */
         :root {
-            /* Core Palette */
-            --nova-paynes-grey: #536878; /* Main Brand Color (Dark) */
-            --nova-pearl: #EAE0C8; /* Secondary Brand Color (Light/Accent) */
-            --nova-white: #FFFFFF; /* Base Background */
-            --nova-dark: #1A1A1A; /* Primary Text/Dark BG fallback */
+            /* Core Palette (Acera) */
+            --acera-paynes-grey: #536878; /* Main Brand Color (Dark Blue-Grey) */
+            --acera-pearl: #EAE0C8; /* Secondary Brand Color (Warm Off-White) */
+            --acera-white: #FFFFFF; /* Base White */
 
-            /* Semantic Colors - Crucial for UX */
-            --nova-success: #38A169; /* Green for success/positive actions */
-            --nova-warning: #ECC94B; /* Yellow for warnings/cautions */
-            --nova-error: #E53E3E; /* Red for errors/destructive actions */
+            /* Semantic Colors */
+            --acera-success: #38A169;
+            --acera-warning: #ECC94B;
+            --acera-error: #E53E3E;
+        }
 
-            /* Dynamic Theme Variables (Light Mode Default) */
-            --bg-primary: var(--nova-white); 
-            --bg-secondary: #F8F9FB; /* Light background for cards/sections */
-            --text-primary: var(--nova-paynes-grey); /* Primary text color */
-            --text-secondary: #718096; /* Secondary text/subtitles */
-            --accent: var(--nova-paynes-grey); /* Main interactive color */
-            --card-bg: var(--nova-white);
+        /* --- STACKING SLIDE STYLES --- */
+        
+        /* The body needs artificial height to allow scrolling for the sticky effect to work */
+        /* Since there are 4 slides, we use 400vh */
+        body {
+            height: 400vh;
+            padding: 0;
+            margin: 0;
+            overflow-x: hidden;
         }
         
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-primary: #0E0E10; /* Darker background */
-                --bg-secondary: #1C1C1E; /* Card/section background */
-                --text-primary: var(--nova-pearl);
-                --text-secondary: #A1A1AA;
-                --accent: var(--nova-pearl); /* Use Pearl as accent in dark mode for contrast */
-                --card-bg: var(--bg-secondary);
+        /* Base slide styles */
+        .slide-dark {
+            background-color: var(--acera-paynes-grey);
+            color: var(--acera-pearl);
+        }
+
+        .slide-light {
+            background-color: var(--acera-pearl);
+            color: var(--acera-paynes-grey);
+        }
+
+        /* Card Styling (Context-aware) */
+        .acera-card {
+            border-radius: 1.5rem; /* rounded-3xl */
+            padding: 2rem; /* Adjusted for better mobile fit */
+            transition: all 0.3s ease;
+        }
+        @media (min-width: 768px) { /* Restore larger padding on desktop/tablet */
+            .acera-card {
+                padding: 2.5rem; /* p-10 equivalent */
             }
         }
-        
-        /* Base Styles */
-        body {
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            transition: background-color 0.3s ease, color 0.3s ease;
+
+        /* Cards on Dark Slide */
+        .slide-dark .acera-card {
+            background-color: #40515e; /* Slightly lighter shade of Paynes Grey */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); 
+            border: 1px solid rgba(234, 224, 200, 0.2);
+            color: var(--acera-pearl);
+        }
+
+        /* Cards on Light Slide */
+        .slide-light .acera-card {
+            background-color: var(--acera-white); /* Pure white for high contrast */
+            color: var(--acera-paynes-grey);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); 
+            border: none;
         }
         
-        .card {
-            background-color: var(--card-bg);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Soft, subtle shadow */
-        }
+        /* Consistent Accent Text & Secondary Text */
+        .slide-dark .accent-text { color: var(--acera-pearl); }
+        .slide-light .accent-text { color: var(--acera-paynes-grey); }
+
+        .slide-dark .secondary-text { color: rgba(234, 224, 200, 0.7); }
+        .slide-light .secondary-text { color: #718096; }
         
-        .accent-text {
-            color: var(--accent);
+        /* Utility for color swatch contrast */
+        .swatch-shadow {
+            box-shadow: 0 0 0 6px var(--acera-paynes-grey);
         }
-        
-        .secondary-text {
-            color: var(--text-secondary);
+
+        /* Button Styling (Base) */
+        .cta-primary {
+            background-color: var(--acera-paynes-grey);
+            color: var(--acera-white);
         }
+        .cta-secondary {
+            color: var(--acera-paynes-grey);
+            border: 2px solid var(--acera-paynes-grey);
+        }
+
+        /* --- INTERACTION GUIDELINES (HOVER/FOCUS) --- */
+
+        /* General Principle: All interactive elements must use a 0.3s cubic-bezier(0.4, 0, 0.2, 1) transition for smooth feedback. */
         
-        /* Component Specific Styles */
-        .color-swatch {
-            width: 100%;
-            height: 120px;
-            border-radius: 12px;
-            transition: transform 0.3s ease;
+        /* Primary CTA Hover: Darkens the background and provides a subtle lift. */
+        .cta-primary:hover {
+            background-color: #435460; /* Slightly darker Paynes Grey */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px); /* Subtle lift effect */
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Secondary CTA Hover: Provides a light background fill and subtle lift. */
+        .cta-secondary:hover {
+            background-color: rgba(83, 104, 120, 0.1); /* Very slight Paynes Grey tint */
+            border-color: #435460; /* Darker border */
+            transform: translateY(-2px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Card Hover Effect (Core Principles / Visual Foundation): Provides a visual indication of focus/interaction via lift and shadow. */
+        .acera-card:hover {
+            transform: translateY(-4px); /* Larger lift for cards */
             cursor: pointer;
         }
-        
-        .color-swatch:hover {
-            transform: scale(1.03); /* Subtle hover for swatches */
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+
+        /* Dark Card Hover (Subtle Shadow increase) */
+        .slide-dark .acera-card:hover {
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        .cta-button {
-            background-color: var(--accent);
-            color: var(--nova-white);
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: background-color 0.2s ease, transform 0.2s ease;
+        /* Light Card Hover (Subtle Shadow increase) */
+        .slide-light .acera-card:hover {
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-
-        .cta-button:hover {
-            opacity: 0.9;
-            transform: translateY(-1px);
-        }
-        
-        /* Layout & Animation (Kept for visual appeal in the guideline) */
-        .section-spacing {
-            padding: 80px 0;
-        }
-        
-        @media (max-width: 768px) {
-            .section-spacing {
-                padding: 48px 0;
-            }
-        }
-
-        /* Fade-in animations remain for document presentation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease forwards;
-        }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
     </style>
 </head>
+<!-- The body height is artificially set to 400vh (4x the viewport height) to allow for the sticky stack effect -->
 <body>
-    <section class="section-spacing">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center fade-in">
-                <div class="mx-auto mb-8" style="width: 120px; height: 120px; background-color: var(--nova-paynes-grey); border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 48px; font-weight: 800; color: var(--nova-pearl);">N</div>
-                <h1 class="text-6xl md:text-7xl font-bold mb-4">Nova UI/UX Guidelines</h1>
-                <p class="text-2xl md:text-3xl font-medium mb-6" style="color: var(--nova-paynes-grey);">Clarity. Consistency. Calm. Built with Lucide React.</p>
-                <p class="text-lg secondary-text max-w-3xl mx-auto leading-relaxed">
-                    This document serves as the single source of truth for all design decisions, ensuring a consistent, accessible, and elegant user experience across the Nova application. Developers, please treat all values (colors, spacing, typography) as canonical variables.
-                </p>
+    
+    <!-- Slide 1: Hero - Z-index 10 (Lowest, covered first) -->
+    <section class="slide-dark sticky top-0 z-10 h-screen w-full flex items-center justify-center p-6 md:p-16">
+        <div class="max-w-4xl mx-auto text-center space-y-6 md:space-y-8 py-16">
+            <div class="mx-auto w-24 h-24 md:w-32 md:h-32 rounded-3xl flex items-center justify-center font-black text-6xl md:text-8xl" 
+                 style="background-color: var(--acera-pearl); color: var(--acera-paynes-grey);">
+                A
             </div>
+            <h1 class="text-5xl sm:text-7xl lg:text-9xl font-black tracking-tight" style="line-height: 1.05;">
+                Acera <span class="accent-text">Design System</span>
+            </h1>
+            <p class="text-base sm:text-xl lg:text-3xl font-light secondary-text max-w-3xl mx-auto">
+                The canonical guide for building clear, consistent, and sophisticated user experiences across all Acera products.
+            </p>
+            <a href="#principles" class="inline-flex items-center justify-center px-8 py-3 sm:px-10 sm:py-4 text-lg font-semibold rounded-full shadow-lg cta-primary"
+               style="transition: all 0.2s;">
+                Dive In &darr;
+            </a>
         </div>
     </section>
 
-    <section class="section-spacing pt-0">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="card rounded-3xl p-12 md:p-16 shadow-lg fade-in delay-1">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">Design System Principles</h2>
-                <p class="text-lg secondary-text mb-8">We follow the **Atomic Design** methodology for building robust, scalable components.</p>
-                <div class="grid md:grid-cols-3 gap-8 text-center">
-                    <div>
-                        <div class="text-5xl mb-4">⚛️</div>
-                        <h3 class="text-2xl font-semibold mb-3 accent-text">Atoms (Inputs, Buttons)</h3>
-                        <p class="secondary-text text-sm">Smallest functional elements. Defined by their singular purpose and consistent styling.</p>
-                    </div>
-                    <div>
-                        <div class="text-5xl mb-4">🧪</div>
-                        <h3 class="text-2xl font-semibold mb-3 accent-text">Molecules (Forms, Nav Bar)</h3>
-                        <p class="secondary-text text-sm">Groups of atoms assembled to perform a simple function. Must be highly reusable.</p>
-                    </div>
-                    <div>
-                        <div class="text-5xl mb-4">🖼️</div>
-                        <h3 class="text-2xl font-semibold mb-3 accent-text">Templates (Layouts, Pages)</h3>
-                        <p class="secondary-text text-sm">A layout of molecules and organisms. Defines the structure and flow before content is added.</p>
-                    </div>
+    <!-- Slide 2: Core Principles - Z-index 20 -->
+    <section id="principles" class="slide-light sticky top-0 z-20 h-screen w-full flex items-center justify-center p-6 md:p-16">
+        <div class="max-w-7xl mx-auto text-center py-16">
+            <h2 class="text-4xl sm:text-5xl font-black mb-12 sm:mb-16">Core Principles</h2>
+            <div class="grid md:grid-cols-3 gap-6 sm:gap-8">
+                <div class="acera-card">
+                    <p class="text-5xl mb-4">✨</p>
+                    <h3 class="text-xl sm:text-2xl font-bold accent-text">Clarity</h3>
+                    <p class="text-sm secondary-text mt-3">Information architecture must be intuitive, minimizing cognitive load for all users and ensuring smooth task completion.</p>
+                </div>
+                <div class="acera-card">
+                    <p class="text-5xl mb-4">📐</p>
+                    <h3 class="text-xl sm:text-2xl font-bold accent-text">Consistency</h3>
+                    <p class="text-sm secondary-text mt-3">Adhering to the 4px grid, standardized tokens, and the atomic design model ensures predictability and reliability.</p>
+                </div>
+                <div class="acera-card">
+                    <p class="text-5xl mb-4">🔗</p>
+                    <h3 class="text-xl sm:text-2xl font-bold accent-text">Scalability</h3>
+                    <p class="text-sm secondary-text mt-3">Components are built for maximum reusability, designed to support rapid iteration and future product expansion.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    ---
+    <!-- Slide 3: Visual Foundation - Z-index 30 (UPDATED) -->
+    <section class="slide-dark sticky top-0 z-30 h-screen w-full flex items-center justify-center p-6 md:p-16">
+        <div class="max-w-7xl mx-auto py-16">
+            <h2 class="text-4xl sm:text-5xl font-black mb-12 sm:mb-16 text-center">Visual Foundation</h2>
+            <div class="grid lg:grid-cols-3 gap-6 sm:gap-8">
 
-    <section class="section-spacing pt-0">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="mb-12 fade-in delay-1">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Color Palette & Tokens</h2>
-                <p class="text-lg secondary-text">The **Paynes Grey** and **Pearl** combination is calm, professional, and sophisticated.</p>
+                <!-- Color Palette Card (Dark Context) -->
+                <div class="acera-card">
+                    <h3 class="text-2xl sm:text-3xl font-extrabold mb-4">🎨 Color Palette</h3>
+                    <p class="secondary-text text-sm border-b pb-4 mb-4" style="border-color: rgba(234, 224, 200, 0.2);">Deep professionalism meets subtle warmth.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl" style="background-color: #536878; box-shadow: 0 0 0 6px #40515e;"></div>
+                            <div>
+                                <p class="font-semibold text-base sm:text-lg" style="color: var(--acera-pearl);">Paynes Grey</p>
+                                <p class="text-xs secondary-text"><code>--acera-paynes-grey</code> | #536878</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl" style="background-color: #EAE0C8; box-shadow: 0 0 0 6px #40515e;"></div>
+                            <div>
+                                <p class="font-semibold text-base sm:text-lg" style="color: var(--acera-pearl);">Pearl</p>
+                                <p class="text-xs secondary-text"><code>--acera-pearl</code> | #EAE0C8</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Typography Card (Dark Context) -->
+                <div class="acera-card">
+                    <h3 class="text-2xl sm:text-3xl font-extrabold mb-4">🅰️ Typography</h3>
+                    <p class="secondary-text text-sm border-b pb-4 mb-4" style="border-color: rgba(234, 224, 200, 0.2);"><strong>Figtree</strong> is used across all mediums for maximum legibility.</p>
+                    <div class="space-y-4">
+                        <div>
+                            <h1 class="text-2xl sm:text-3xl font-black tracking-tight" style="color: var(--acera-pearl);">H1: Brand Display</h1>
+                            <p class="text-xs secondary-text">Weight: Black (900) | Size: 48-60px</p>
+                        </div>
+                        <div>
+                            <h2 class="text-lg sm:text-xl font-bold" style="color: var(--acera-pearl);">H2: Section Heading</h2>
+                            <p class="text-xs secondary-text">Weight: Bold (700) | Size: 32-40px</p>
+                        </div>
+                        <div>
+                            <p class="text-sm sm:text-base font-normal secondary-text">Body Text Standard (16px)</p>
+                            <p class="text-xs secondary-text">Weight: Regular (400) | Line Height: 1.6</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Components & Icons Card (UPDATED) -->
+                <div class="acera-card">
+                    <h3 class="text-2xl sm:text-3xl font-extrabold mb-4">⚙️ Components & Icons</h3>
+                    <p class="secondary-text text-sm border-b pb-4 mb-4" style="border-color: rgba(234, 224, 200, 0.2);">A foundation built on accessibility, consistency, and reusability.</p>
+                    <div class="space-y-4">
+                        <!-- Component Library -->
+                        <div>
+                            <h4 class="text-lg sm:text-xl font-bold" style="color: var(--acera-pearl);">UI Component Library</h4>
+                            <p class="text-sm secondary-text mt-1"><strong>Shadcn/ui</strong> provides the base component primitives, ensuring high quality and accessibility standards.</p>
+                        </div>
+                        <!-- Iconography Section -->
+                        <div>
+                            <h4 class="text-lg sm:text-xl font-bold" style="color: var(--acera-pearl);">Iconography Source</h4>
+                            <p class="text-sm secondary-text mt-1">We rely on **Lucide React** for simple, scalable vector icons.</p>
+                            <ul class="space-y-1 secondary-text text-sm pl-4 list-disc marker:text-xl marker:text-white mt-2">
+                                <li><strong>Stroke Weight:</strong> Standard <strong>2px</strong>.</li>
+                                <li><strong>Color Rule:</strong> Use <code>var(--acera-pearl)</code> in dark contexts.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 4: Component Showcase - Z-index 40 (Highest, covers all others) -->
+    <section class="slide-light sticky top-0 z-40 h-screen w-full flex items-center justify-center p-6 md:p-16">
+        <div class="max-w-5xl mx-auto py-16">
+            <h2 class="text-4xl sm:text-5xl font-black mb-12 sm:mb-16 text-center">Standard Components</h2>
+
+            <div class="acera-card">
+                <!-- Button Group -->
+                <div class="mb-8 sm:mb-10 pb-6 sm:pb-8 border-b" style="border-color: #e5e7eb;">
+                    <h3 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Action Buttons</h3>
+                    <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                        <!-- Primary CTA now uses the cta-primary class for hover styles -->
+                        <a href="#" class="w-full sm:w-auto inline-block text-center py-3 px-6 sm:px-8 text-base sm:text-lg font-semibold rounded-xl shadow-md cta-primary">
+                            Primary CTA
+                        </a>
+                        <!-- Secondary CTA now uses the cta-secondary class for hover styles -->
+                        <a href="#" class="w-full sm:w-auto inline-block text-center py-3 px-6 sm:px-8 text-base sm:text-lg font-semibold rounded-xl cta-secondary" style="background-color: transparent;">
+                            Secondary Action
+                        </a>
+                    </div>
+                    <p class="mt-4 text-sm secondary-text">
+                        <strong>Focus States:</strong> A clear outline ring must be applied to all interactive elements for accessibility compliance.
+                    </p>
+                </div>
+
+                <!-- Status Indicators / Semantic Colors -->
+                <div>
+                    <h3 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Status & Semantic Colors</h3>
+                    <div class="grid sm:grid-cols-3 gap-3 sm:gap-4 text-sm">
+                        <div class="flex items-center p-3 sm:p-4 rounded-xl" style="background-color: rgba(56, 161, 105, 0.1); color: var(--acera-success); border: 1px solid var(--acera-success);">
+                            <span class="font-bold mr-2">✓ Success:</span> Approved
+                        </div>
+                        <div class="flex items-center p-3 sm:p-4 rounded-xl" style="background-color: rgba(236, 201, 75, 0.1); color: var(--acera-warning); border: 1px solid var(--acera-warning);">
+                            <span class="font-bold mr-2">⚠ Warning:</span> Pending
+                        </div>
+                        <div class="flex items-center p-3 sm:p-4 rounded-xl" style="background-color: rgba(229, 62, 62, 0.1); color: var(--acera-error); border: 1px solid var(--acera-error);">
+                            <span class="font-bold mr-2">✖ Error:</span> Required
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <div class="grid md:grid-cols-4 gap-6">
-                <div class="card rounded-2xl p-6 shadow-lg fade-in delay-2">
-                    <div class="color-swatch mb-4" style="background: #536878; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700;">PAYNES GREY</div>
-                    <h3 class="font-semibold text-lg mb-2">Primary / Accent</h3>
-                    <p class="text-sm secondary-text mb-2">**#536878**</p>
-                    <p class="text-sm secondary-text">Main brand color. Used for primary CTAs, active states, and dark text in light mode.</p>
-                </div>
-                
-                <div class="card rounded-2xl p-6 shadow-lg fade-in delay-3">
-                    <div class="color-swatch mb-4" style="background: #EAE0C8; color: #536878; display: flex; align-items: center; justify-content: center; font-weight: 700;">PEARL</div>
-                    <h3 class="font-semibold text-lg mb-2">Secondary / Light Accent</h3>
-                    <p class="text-sm secondary-text mb-2">**#EAE0C8**</p>
-                    <p class="text-sm secondary-text">Subtle accent color. Used for light backgrounds, borders, or text in dark mode.</p>
-                </div>
-
-                <div class="card rounded-2xl p-6 shadow-lg fade-in delay-4">
-                    <div class="color-swatch mb-4" style="background: #FFFFFF; border: 1px solid #E5E7EB;"></div>
-                    <h3 class="font-semibold text-lg mb-2">Background Base</h3>
-                    <p class="text-sm secondary-text mb-2">**#FFFFFF**</p>
-                    <p class="text-sm secondary-text">Clean base for all components in light theme. Use `var(--bg-primary)`.</p>
-                </div>
-                
-                <div class="card rounded-2xl p-6 shadow-lg fade-in delay-5">
-                    <div class="color-swatch mb-4" style="background: linear-gradient(135deg, var(--nova-success), var(--nova-error));"></div>
-                    <h3 class="font-semibold text-lg mb-2">Semantic (Status)</h3>
-                    <p class="text-sm secondary-text mb-2">Success/Error/Warning</p>
-                    <p class="text-sm secondary-text">Reserved strictly for feedback (notifications, form validation, alerts).</p>
-                </div>
-            </div>
+            <p class="text-center text-xs sm:text-sm secondary-text mt-8 sm:mt-12">
+                Acera Design System v1.1 | All rights reserved.
+            </p>
         </div>
     </section>
-
-    ---
-
-    <section class="section-spacing pt-0">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="mb-12 fade-in delay-1">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Typography & Hierarchy</h2>
-                <p class="text-lg secondary-text">**Figtree** for maximum legibility. Maintain a consistent, logical scale.</p>
-            </div>
-            
-            <div class="card rounded-3xl p-12 shadow-lg fade-in delay-2">
-                <div class="mb-8 border-b pb-8" style="border-color: var(--text-secondary); border-opacity: 0.1;">
-                    <h1 class="text-5xl md:text-6xl font-extrabold mb-2" style="color: var(--nova-paynes-grey);">H1 - The Core Message</h1>
-                    <p class="secondary-text">Font: Figtree Extra Bold (800), Size: 48-60px, Line Height: 1.1</p>
-                </div>
-                
-                <div class="mb-8 border-b pb-8" style="border-color: var(--text-secondary); border-opacity: 0.1;">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-2">H2 - Section Title</h2>
-                    <p class="secondary-text">Font: Figtree Bold (700), Size: 32-40px, Line Height: 1.2</p>
-                </div>
-                
-                <div class="mb-8">
-                    <p class="text-lg mb-2 font-medium">Body Text (16px) - The Details</p>
-                    <p class="secondary-text leading-relaxed">Font: Figtree Regular (400), Size: 16px, Line Height: 1.6. This is the **default text size**. Ensure paragraph text is never smaller than 14px for accessibility (WCAG AA). Use Regular weight for most content.</p>
-                    <p class="text-sm mt-4 secondary-text">**Caption Text (12px):** Font: Figtree Medium (500), Size: 12px. Used for timestamps, legal notices, and minor annotations.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    ---
-
-    <section class="section-spacing pt-0">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="mb-12 fade-in delay-1">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Iconography: Lucide React ⚛️</h2>
-                <p class="text-lg secondary-text">Using **Lucide React** for a consistent, minimal, and open-source icon set. Stroke width is key.</p>
-            </div>
-            
-            <div class="card rounded-3xl p-12 shadow-lg fade-in delay-2">
-                <div class="grid md:grid-cols-2 gap-8 mb-8">
-                    <div>
-                        <h3 class="text-2xl font-semibold mb-4 accent-text">Style & Implementation</h3>
-                        <ul class="space-y-3 secondary-text">
-                            <li>**Source:** Always use `lucide-react` components.</li>
-                            <li>**Stroke Weight:** Standard **2px** for all icons (can be reduced to 1.5px for 16px icons).</li>
-                            <li>**Color:** Default color is `var(--text-primary)`. Interactive icons (buttons, navigation) use `var(--accent)`.</li>
-                            <li>**Sizing:** Standard sizes are **24px** (default), **20px** (subtle), **16px** (small), and **32px** (large).</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl font-semibold mb-4 accent-text">Best Practices (UX)</h3>
-                        <ul class="space-y-3 secondary-text">
-                            <li>**Clarity:** Icons must be immediately recognizable. Avoid obscure or overly complex shapes.</li>
-                            <li>**Labeling:** Always pair icons with a visible text label, especially in navigation and action buttons (unless space is a critical constraint).</li>
-                            <li>**Accessibility:** Ensure icons have an appropriate `aria-label` or are hidden from screen readers if they are purely decorative.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <h4 class="text-xl font-semibold mb-4 mt-6 accent-text">Example Icons (Simulated Lucide Icons)</h4>
-                <div class="icon-grid">
-                    <div class="icon-item" style="border: 1px solid var(--text-secondary); border-opacity: 0.1;">
-                        <svg class="w-10 h-10" style="color: var(--accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l9-9 9 9M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"></path></svg>
-                    </div>
-                    <div class="icon-item" style="border: 1px solid var(--text-secondary); border-opacity: 0.1;">
-                        <svg class="w-10 h-10" style="color: var(--text-primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg>
-                    </div>
-                    <div class="icon-item" style="border: 1px solid var(--text-secondary); border-opacity: 0.1;">
-                        <svg class="w-10 h-10" style="color: var(--nova-error);" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                    <div class="icon-item" style="border: 1px solid var(--text-secondary); border-opacity: 0.1;">
-                        <svg class="w-10 h-10" style="color: var(--nova-success);" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    ---
-
-    <section class="section-spacing pt-0">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="mb-12 fade-in delay-1">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Senior UX & Accessibility Standards</h2>
-                <p class="text-lg secondary-text">Mandatory practices for a top-tier app experience.</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="card rounded-2xl p-8 shadow-lg fade-in delay-2">
-                    <h3 class="text-2xl font-semibold mb-4 accent-text">Accessibility & Contrast (WCAG)</h3>
-                    <ul class="space-y-3 secondary-text">
-                        <li>**Contrast Ratio:** Ensure text on background meets **AA minimum (4.5:1)**. Our Primary/Accent colors on white should pass.</li>
-                        <li>**Focus States:** All interactive elements (buttons, links, inputs) **must** have a clear, distinct `:focus` ring (use a 2px solid ring in a light shade of Paynes Grey).</li>
-                        <li>**Screen Readers:** Use semantic HTML (`<button>`, `<h1>`, `<ul>`) and provide alt text for all meaningful images.</li>
-                        <li>**Target Size:** Interactive targets (buttons, links) should be a minimum of **44x44px** for touch-friendliness.</li>
-                    </ul>
-                </div>
-
-                <div class="card rounded-2xl p-8 shadow-lg fade-in delay-3">
-                    <h3 class="text-2xl font-semibold mb-4 accent-text">Microcopy & UX Writing</h3>
-                    <ul class="space-y-3 secondary-text">
-                        <li>**Tone:** Use the **Clear**, **Empowering**, and **Friendly** voice defined in the Brand Voice section.</li>
-                        <li>**Action-Oriented CTAs:** Use verbs that clearly explain the action (e.g., "Create Account," "Save Changes," not "OK," "Submit").</li>
-                        <li>**Error Messages:** Must be polite, non-blaming, and actionable. (e.g., "The email address is already in use. Try logging in or resetting your password.").</li>
-                        <li>**Zero State:** When a list or dashboard is empty, provide helpful text and a clear CTA on how to start.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    ---
-
-    <section class="section-spacing pt-0">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="mb-12 fade-in delay-1">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Core UI Components</h2>
-                <p class="text-lg secondary-text">Standardized interaction and styling for essential elements.</p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="card rounded-2xl p-8 shadow-lg fade-in delay-2">
-                    <h3 class="text-xl font-semibold mb-4 accent-text">Buttons (CTA)</h3>
-                    <a href="#" class="cta-button inline-block text-center w-full mb-3">Primary Action</a>
-                    <a href="#" class="inline-block text-center w-full mb-3 font-semibold rounded-lg p-3" style="color: var(--nova-paynes-grey); border: 2px solid var(--nova-paynes-grey);">Secondary Action</a>
-                    <p class="text-sm secondary-text mt-4">**States:** Default (Solid Paynes Grey), Hover (90% opacity/slight darkening), Focus (Outline in Pearl), Disabled (50% opacity).</p>
-                </div>
-                
-                <div class="card rounded-2xl p-8 shadow-lg fade-in delay-3" style="border: 1px solid var(--nova-pearl);">
-                    <h3 class="text-xl font-semibold mb-4 accent-text">Cards & Containers</h3>
-                    <p class="font-semibold mb-2">Card Title</p>
-                    <p class="secondary-text text-sm mb-4">Use `rounded-2xl` or `rounded-3xl` for modern softness. Background is `var(--card-bg)`. Utilize a 1px border of `var(--nova-pearl)` for separation without harsh lines.</p>
-                    <div class="flex items-center space-x-2 secondary-text text-xs">
-                        <span style="color: var(--nova-success);">✓ Status: Active</span>
-                        <span style="color: var(--nova-warning);">⚠ Pending Review</span>
-                    </div>
-                </div>
-                
-                <div class="card rounded-2xl p-8 shadow-lg fade-in delay-4">
-                    <h3 class="text-xl font-semibold mb-4 accent-text">Spacing & Grid</h3>
-                    <p class="secondary-text text-sm mb-4">We use a **4px base grid** for all padding, margins, and component dimensions. This ensures vertical rhythm and predictability for developers. Use Tailwind's spacing scale (e.g., `p-4` = 16px, `m-3` = 12px).</p>
-                    <div class="bg-gray-200 h-10 w-full mb-2 flex items-center justify-center font-semibold text-gray-700">16px Padding (p-4)</div>
-                    <div class="bg-gray-300 h-10 w-full flex items-center justify-center font-semibold text-gray-800">24px Margin (m-6)</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-12 border-t" style="border-color: var(--text-secondary); border-opacity: 0.2;">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="text-center md:text-left">
-                    <div class="mx-auto mb-3" style="width: 48px; height: 48px; background-color: var(--nova-paynes-grey); font-size: 20px; border-radius: 12px; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: var(--nova-pearl);">N</div>
-                    <p class="secondary-text text-sm">Nova UI/UX Guidelines v1.0 | Last Updated: OCT 2025</p>
-                </div>
-                <div class="text-center md:text-right">
-                    <p class="mb-2">Designed for **Clarity** and **Scalability**</p>
-                    <p class="secondary-text text-sm">Contact Design System Lead for contribution access.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
 </body>
 </html>
