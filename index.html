@@ -4,6 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brand Guidelines - Acera ✦</title>
+    
+    <!-- --- SEO & Open Graph Meta Tags (Added for Discoverability) --- -->
+    <!-- Primary Description -->
+    <meta name="description" content="The canonical guide for building clear, consistent, and sophisticated user experiences across all Acera products, covering color, typography, and iconography.">
+    
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:title" content="Acera Design System Brand Guidelines">
+    <meta property="og:description" content="The official guide for the Acera Design System, featuring Paynes Grey and Figtree typography, optimized for clarity and consistency.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.acera.design/guidelines"> 
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Acera Design System Brand Guidelines">
+    <meta name="twitter:description" content="The official guide for the Acera Design System, featuring Paynes Grey and Figtree typography.">
+    <!-- --- End SEO Meta Tags --- -->
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,6 +56,8 @@
             padding: 0;
             margin: 0;
             overflow-x: hidden;
+            /* ADDED: Smooth scrolling behavior */
+            scroll-behavior: smooth;
         }
         
         /* Base slide styles */
@@ -83,6 +102,19 @@
         /* Consistent Accent Text & Secondary Text */
         .slide-dark .accent-text { color: var(--acera-pearl); }
         .slide-light .accent-text { color: var(--acera-paynes-grey); }
+
+        /* Icon Container styling for the examples */
+        .icon-example-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            align-items: center;
+        }
+        @media (min-width: 768px) {
+            .icon-example-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
 
         .slide-dark .secondary-text { color: rgba(234, 224, 200, 0.7); }
         .slide-light .secondary-text { color: #718096; }
@@ -157,8 +189,9 @@
             <p class="text-base sm:text-xl lg:text-3xl font-light secondary-text max-w-3xl mx-auto">
                 The canonical guide for building clear, consistent, and sophisticated user experiences across all Acera products.
             </p>
-            <a href="#principles" class="inline-flex items-center justify-center px-8 py-3 sm:px-10 sm:py-4 text-lg font-semibold rounded-full shadow-lg cta-primary"
-               style="transition: all 0.2s;">
+            <!-- UPDATED: Button color set to Pearl/Paynes Grey inline. -->
+            <a href="#principles" class="inline-flex items-center justify-center px-8 py-3 sm:px-10 sm:py-4 text-lg font-semibold rounded-full shadow-lg"
+               style="background-color: var(--acera-pearl); color: var(--acera-paynes-grey); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
                 Dive In &darr;
             </a>
         </div>
@@ -188,7 +221,7 @@
         </div>
     </section>
 
-    <!-- Slide 3: Visual Foundation - Z-index 30 (UPDATED) -->
+    <!-- Slide 3: Visual Foundation - Z-index 30 -->
     <section class="slide-dark sticky top-0 z-30 h-screen w-full flex items-center justify-center p-6 md:p-16">
         <div class="max-w-7xl mx-auto py-16">
             <h2 class="text-4xl sm:text-5xl font-black mb-12 sm:mb-16 text-center">Visual Foundation</h2>
@@ -236,26 +269,63 @@
                     </div>
                 </div>
 
-                <!-- Components & Icons Card (UPDATED) -->
+                <!-- Components & Icons Card (UPDATED WITH EXAMPLES) -->
                 <div class="acera-card">
                     <h3 class="text-2xl sm:text-3xl font-extrabold mb-4">⚙️ Components & Icons</h3>
                     <p class="secondary-text text-sm border-b pb-4 mb-4" style="border-color: rgba(234, 224, 200, 0.2);">A foundation built on accessibility, consistency, and reusability.</p>
-                    <div class="space-y-4">
-                        <!-- Component Library -->
-                        <div>
-                            <h4 class="text-lg sm:text-xl font-bold" style="color: var(--acera-pearl);">UI Component Library</h4>
-                            <p class="text-sm secondary-text mt-1"><strong>Shadcn/ui</strong> provides the base component primitives, ensuring high quality and accessibility standards.</p>
-                        </div>
-                        <!-- Iconography Section -->
-                        <div>
-                            <h4 class="text-lg sm:text-xl font-bold" style="color: var(--acera-pearl);">Iconography Source</h4>
-                            <p class="text-sm secondary-text mt-1">We rely on **Lucide React** for simple, scalable vector icons.</p>
-                            <ul class="space-y-1 secondary-text text-sm pl-4 list-disc marker:text-xl marker:text-white mt-2">
-                                <li><strong>Stroke Weight:</strong> Standard <strong>2px</strong>.</li>
-                                <li><strong>Color Rule:</strong> Use <code>var(--acera-pearl)</code> in dark contexts.</li>
-                            </ul>
-                        </div>
+                    
+                    <!-- Iconography Source -->
+                    <div class="mb-4">
+                        <h4 class="text-lg sm:text-xl font-bold" style="color: var(--acera-pearl);">Iconography Source</h4>
+                        <p class="text-sm secondary-text mt-1">We rely on **Lucide** for simple, scalable vector icons. In vanilla HTML/CSS environments, you **must** use the **inline SVG** markup for precise control over styling.</p>
                     </div>
+
+                    <!-- Icon Examples Block -->
+                    <div>
+                        <h4 class="text-lg sm:text-xl font-bold mb-3" style="color: var(--acera-pearl);">Example Implementation (Inline SVG)</h4>
+                        <div class="icon-example-grid">
+                            <!-- Icon 1: Palette -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--acera-pearl)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+                                <circle cx="13.5" cy="6.5" r=".5"/>
+                                <circle cx="17.5" cy="10.5" r=".5"/>
+                                <circle cx="8.5" cy="7.5" r=".5"/>
+                                <path d="M12.5 2A10.5 10.5 0 0 1 23 12.5c0 5-4 9-9 9s-9-4-9-9C5 7.5 7.5 2 12.5 2v0z"/>
+                            </svg>
+                            
+                            <!-- Icon 2: User -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--acera-pearl)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+                                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+
+                            <!-- Icon 3: Menu -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--acera-pearl)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+                                <line x1="4" y1="12" x2="20" y2="12"/>
+                                <line x1="4" y1="6" x2="20" y2="6"/>
+                                <line x1="4" y1="18" x2="20" y2="18"/>
+                            </svg>
+                            
+                            <!-- Icon 4: X (Close/Cancel) -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--acera-pearl)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+                                <path d="M18 6L6 18M6 6l12 12"/>
+                            </svg>
+
+                            <!-- Icon 5: Zap -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--acera-pearl)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+                                <path d="M12 2L6 11h4l-3 10 9-7h-4z"/>
+                            </svg>
+
+                            <!-- Icon 6: Figma -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--acera-pearl)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+                                <path d="M5.5 22h13a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1h-13a1 1 0 0 0-1 1v18a1 1 0 0 0 1 1z"/>
+                                <path d="M9 2v20M15 2v20M5.5 9h13M5.5 15h13M5.5 6h13"/>
+                            </svg>
+                        </div>
+                        <p class="mt-3 text-sm secondary-text">
+                            **Rule Enforcement:** The essential attributes are <code>stroke</code> set to the CSS variable <code>var(--acera-pearl)</code> and <code>stroke-width</code> explicitly set to <code>2</code>.
+                        </p>
+                    </div>
+
                 </div>
 
             </div>
@@ -272,11 +342,11 @@
                 <div class="mb-8 sm:mb-10 pb-6 sm:pb-8 border-b" style="border-color: #e5e7eb;">
                     <h3 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Action Buttons</h3>
                     <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
-                        <!-- Primary CTA now uses the cta-primary class for hover styles -->
+                        <!-- Primary CTA uses the cta-primary class for dark background and hover styles -->
                         <a href="#" class="w-full sm:w-auto inline-block text-center py-3 px-6 sm:px-8 text-base sm:text-lg font-semibold rounded-xl shadow-md cta-primary">
                             Primary CTA
                         </a>
-                        <!-- Secondary CTA now uses the cta-secondary class for hover styles -->
+                        <!-- Secondary CTA uses the cta-secondary class for outline and hover styles -->
                         <a href="#" class="w-full sm:w-auto inline-block text-center py-3 px-6 sm:px-8 text-base sm:text-lg font-semibold rounded-xl cta-secondary" style="background-color: transparent;">
                             Secondary Action
                         </a>
